@@ -1,5 +1,3 @@
-module.exports = function countIncreases(depths) {
-  return depths.filter(
-    (currentDepth, i) => i !== 0 && currentDepth > depths[i - 1]
-  ).length;
-};
+const hasIncreased = require('./has-increased');
+
+module.exports = (depths) => depths.filter(hasIncreased).length;
