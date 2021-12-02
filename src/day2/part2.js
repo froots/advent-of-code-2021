@@ -14,6 +14,6 @@ const part2 = (input) =>
     .map(([direction, dist]) => [direction, Number(dist)])
     .reduce(processInstruction, [0, 0, 0])
     .slice(0, 2)
-    .reduce(product);
+    .reduce(product, 1);
 
 module.exports = part2;
