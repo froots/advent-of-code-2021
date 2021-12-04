@@ -3,7 +3,10 @@ const parse = (input) => {
   return [
     drawInput.split(',').map(Number),
     boardsInput.map((boardInput) =>
-      boardInput.split('\n').map((line) => line.split(/\s+/).map(Number))
+      boardInput
+        .split('\n')
+        .filter((line) => !!line)
+        .map((line) => line.split(/\s+/).map(Number))
     ),
   ];
 };
