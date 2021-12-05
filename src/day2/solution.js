@@ -1,4 +1,11 @@
+const { vScale, vSum } = require('../vector');
 const { product } = require('../reducers');
+
+const vecNames = {
+  forward: [1, 0],
+  down: [0, 1],
+  up: [0, -1],
+};
 
 const processInstruction = ([h, d, aim], [dir, dist]) => {
   if (dir === 'forward') {
@@ -8,6 +15,13 @@ const processInstruction = ([h, d, aim], [dir, dist]) => {
   return [h, d, aim + aimMod * dist];
 };
 
+const part1 = (input) =>
+  input
+    .map((instr) => instr.split(' '))
+    .map(([dir, dist]) => vScale(vecNames[dir], Number(dist)))
+    .reduce(vSum, [0, 0])
+    .reduce(product, 1);
+
 const part2 = (input) =>
   input
     .map((instr) => instr.split(' '))
@@ -16,4 +30,4 @@ const part2 = (input) =>
     .slice(0, 2)
     .reduce(product, 1);
 
-module.exports = part2;
+module.exports = { part1, part2 };
