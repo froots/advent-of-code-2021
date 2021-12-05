@@ -38,14 +38,21 @@ const sumRemaining = (board) =>
     .filter((cell) => cell >= 0)
     .reduce(sum, 0);
 
+const sortBoards = (boards, draw) =>
+  boards
+    .map((board) => winningState(board, draw))
+    .sort(([winIdx1], [winIdx2]) => winIdx1 - winIdx2);
+
 const part1 = (input) => {
   const [draw, boards] = parse(input);
-
-  const [winningIndex, winningBoard] = boards
-    .map((board) => winningState(board, draw))
-    .sort(([winIdx1], [winIdx2]) => winIdx1 - winIdx2)[0];
-
+  const [winningIndex, winningBoard] = sortBoards(boards, draw)[0];
   return draw[winningIndex] * sumRemaining(winningBoard);
 };
 
-module.exports = { part1, parse, winningState };
+const part2 = (input) => {
+  const [draw, boards] = parse(input);
+  const [losingIndex, losingBoard] = sortBoards(boards, draw).reverse()[0];
+  return draw[losingIndex] * sumRemaining(losingBoard);
+};
+
+module.exports = { part1, part2, parse, winningState };

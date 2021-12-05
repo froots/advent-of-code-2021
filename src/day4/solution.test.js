@@ -1,4 +1,4 @@
-const { part1, parse, winningState } = require('./solution');
+const { part1, part2, parse, winningState } = require('./solution');
 
 const input = `7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,3,26,1
 
@@ -37,8 +37,12 @@ test('4 - Parses input to drawn numbers and boards', () => {
   ]);
 });
 
-test('4.1 Plays bingo until win, then calculates winning score', () => {
+test('4.1 Winning score of first card to bingo', () => {
   expect(part1(input)).toBe(4512);
+});
+
+test('4.2 Score of last card to bingo', () => {
+  expect(part2(input)).toBe(1924);
 });
 
 test('4 - winningState converts starting board to its winning state given a draw', () => {
