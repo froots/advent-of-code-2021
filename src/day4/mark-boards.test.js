@@ -22,7 +22,7 @@ test('4 - markBoards changes one board when provided number matches', () => {
   const marked = markBoards(boards, 1);
   expect(marked).toEqual([
     [
-      [-1, 2, 3],
+      ['X', 2, 3],
       [4, 5, 6],
       [7, 8, 9],
     ],
@@ -36,10 +36,10 @@ test('4 - markBoards changes both boards when provided number matches', () => {
     [
       [1, 2, 3],
       [4, 5, 6],
-      [7, 8, -9],
+      [7, 8, 'X'],
     ],
     [
-      [-9, 11, 12],
+      ['X', 11, 12],
       [13, 14, 15],
       [16, 17, 18],
     ],
@@ -50,12 +50,12 @@ test('4 - markBoards marks cumulatively', () => {
   const marked = markBoards(markBoards(boards, 9), 1);
   expect(marked).toEqual([
     [
-      [-1, 2, 3],
+      ['X', 2, 3],
       [4, 5, 6],
-      [7, 8, -9],
+      [7, 8, 'X'],
     ],
     [
-      [-9, 11, 12],
+      ['X', 11, 12],
       [13, 14, 15],
       [16, 17, 18],
     ],
