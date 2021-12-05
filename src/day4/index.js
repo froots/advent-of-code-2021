@@ -1,6 +1,6 @@
 const logTimed = require('../log-timed');
 const readInput = require('../read-input');
-const part1 = require('./part1');
+const { part1 } = require('./solution');
 
 function run() {
   readInput('4', (data) => {
