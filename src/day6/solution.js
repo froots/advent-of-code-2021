@@ -1,6 +1,6 @@
 const { sum } = require('../reducers');
 
-const part1 = (input, duration) => {
+const solution = (input, duration) => {
   const counts = input
     .sort((a, b) => a - b)
     .reduce((tally, item) => {
@@ -18,4 +18,4 @@ const part1 = (input, duration) => {
   return counts.reduce(sum, 0);
 };
 
-module.exports = { part1 };
+module.exports = { solution };
