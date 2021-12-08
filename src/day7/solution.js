@@ -33,7 +33,7 @@ const part2 = (startingPositions) => {
         .map((p2) => triangleSum(Math.abs(p2 - p1)))
         .reduce(sum, 0),
     ])
-    .sort((c1, c2) => c1[1] - c2[1])[0];
+    .sort((a, b) => a[1] - b[1])[0];
 };
 
 module.exports = { part1, part2 };
