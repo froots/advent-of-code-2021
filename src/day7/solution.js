@@ -9,6 +9,8 @@ const median = (arr) => {
   return sorted[middle];
 };
 
+const triangleSum = (n) => (n * (n + 1)) / 2;
+
 const part1 = (startingPositions) => {
   const med = median(startingPositions);
   const consumption = startingPositions
@@ -18,4 +20,20 @@ const part1 = (startingPositions) => {
   return [med, consumption];
 };
 
-module.exports = { part1 };
+const part2 = (startingPositions) => {
+  const sortedPositions = [...startingPositions].sort((a, b) => a - b);
+  const min = sortedPositions[0];
+  const max = sortedPositions[sortedPositions.length - 1];
+  return Array(max - min + 1)
+    .fill(0)
+    .map((_, i) => i + min)
+    .map((p1) => [
+      p1,
+      sortedPositions
+        .map((p2) => triangleSum(Math.abs(p2 - p1)))
+        .reduce(sum, 0),
+    ])
+    .sort((c1, c2) => c1[1] - c2[1])[0];
+};
+
+module.exports = { part1, part2 };
