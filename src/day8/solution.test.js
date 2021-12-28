@@ -1,4 +1,4 @@
-const { parse, part1 } = require('./solution');
+const { createMapper, parse, part1, part2 } = require('./solution');
 
 const input = `be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe
 edbfga begcd cbg gc gcadebf fbgde acbgfd abcde gfcbed gfec | fcgedb cgb dgebacf gc
@@ -53,4 +53,34 @@ edbfga begcd cbg gc gcadebf fbgde acbgfd abcde gfcbed gfec | fcgedb cgb dgebacf 
 
 test('8.1 counts the total of digits with unique number of segments', () => {
   expect(part1(input)).toBe(26);
+});
+
+test('8.2 sums all the decoded output values', () => {
+  expect(part2(input)).toBe(61229);
+});
+
+test.only('8: deduce mapping', () => {
+  const signalPatterns = [
+    'acedgfb',
+    'cdfbe',
+    'gcdfa',
+    'fbcad',
+    'dab',
+    'cefabd',
+    'cdfgeb',
+    'eafb',
+    'cagedb',
+    'ab',
+  ];
+  const mapper = createMapper(signalPatterns);
+  // expect(mapper('cagedb')).toBe('0');
+  expect(mapper('ab')).toBe('1');
+  // expect(mapper('gcdfa')).toBe('2');
+  expect(mapper('fbcad')).toBe('3');
+  expect(mapper('eafb')).toBe('4');
+  // expect(mapper('cdfbe')).toBe('5');
+  // expect(mapper('cdfgeb')).toBe('6');
+  expect(mapper('dab')).toBe('7');
+  expect(mapper('acedgfb')).toBe('8');
+  // expect(mapper('cefabd')).toBe('9');
 });
