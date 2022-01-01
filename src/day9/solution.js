@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 const { sum, product } = require('../reducers');
 
 const toPointId = (x, y) => `${x},${y}`;
