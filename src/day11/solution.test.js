@@ -1,4 +1,4 @@
-const { part1, parse, step } = require('./solution');
+const { part1, part2, parse, step } = require('./solution');
 
 const input = `5483143223
 2745854711
@@ -124,6 +124,10 @@ const step10 = `0481112976
 
 test('11.1: Calculates total flashes after 100 steps', () => {
   expect(part1(input)).toBe(1656);
+});
+
+test('11.2: Finds the first step during which all octopuses flash', () => {
+  expect(part2(input)).toBe(195);
 });
 
 test('11: Tick examples', () => {

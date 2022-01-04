@@ -9,11 +9,7 @@ const parse = (input) =>
     .filter(Boolean)
     .map((line) => line.split('').map(Number));
 
-const step = (grid, totalFlashes = 0) => {
-  /**
-   * 1. First, the energy level of each octopus increases by 1.
-   * */
-
+const step = (grid) => {
   let gridAfter = grid.map((row) => row.map((energy) => energy + 1));
 
   while (
@@ -21,18 +17,10 @@ const step = (grid, totalFlashes = 0) => {
       .flat()
       .filter((energy) => typeof energy === 'number' && energy >= 10).length > 0
   ) {
-    /**
-     * 2. Then, any octopus with an energy level greater than 9 flashes.
-     */
-
     gridAfter = gridAfter.map((row) =>
       row.map((energy) => (energy >= 10 ? FLASHING : energy))
     );
 
-    /**
-     * This increases the energy level of all adjacent octopuses by 1, including
-     * octopuses that are diagonally adjacent.
-     */
     const flashing = gridAfter
       .map((row, y) =>
         row.reduce(
@@ -72,7 +60,7 @@ const step = (grid, totalFlashes = 0) => {
     row.map((energy) => (energy === FLASHED ? 0 : energy))
   );
 
-  return [gridAfter, totalFlashes + newFlashes];
+  return [gridAfter, newFlashes];
 };
 
 const part1 = (input, steps = 100) => {
@@ -80,10 +68,26 @@ const part1 = (input, steps = 100) => {
   let flashes = 0;
 
   for (let i = 0; i < steps; i += 1) {
-    [grid, flashes] = step(grid, flashes);
+    const [newGrid, newFlashes] = step(grid);
+    flashes += newFlashes;
+    grid = newGrid;
   }
 
   return flashes;
 };
 
-module.exports = { part1, step, parse };
+const part2 = (input) => {
+  let grid = parse(input);
+  let flashes = 0;
+  const gridSize = grid.flat().length;
+  let currentStep = 0;
+
+  while (flashes !== gridSize) {
+    [grid, flashes] = step(grid);
+    currentStep += 1;
+  }
+
+  return currentStep;
+};
+
+module.exports = { part1, part2, step, parse };
