@@ -5,6 +5,6 @@ module.exports = function logTimed(prefix, cb) {
   const hrend = process.hrtime(hrstart);
 
   console.info(
-    `${prefix}: Result: ${result} - in ${hrend[0]}s ${hrend[1] / 1000000}ms`
+    `${prefix}: Res: ${result} - in ${hrend[0]}s ${hrend[1] / 1000000}ms`
   );
 };
